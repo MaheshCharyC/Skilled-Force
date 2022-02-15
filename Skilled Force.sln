@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skilled Force", "Skilled Force.csproj", "{DA06E7CF-4F28-47AC-81FC-EA7090AFD7E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA06E7CF-4F28-47AC-81FC-EA7090AFD7E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA06E7CF-4F28-47AC-81FC-EA7090AFD7E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA06E7CF-4F28-47AC-81FC-EA7090AFD7E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA06E7CF-4F28-47AC-81FC-EA7090AFD7E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC84498F-D4DC-4D7E-8782-7AA84FEA8A91}
+	EndGlobalSection
+EndGlobal
