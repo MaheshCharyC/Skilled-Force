@@ -49,10 +49,12 @@ namespace Skilled_Force
             //app.UseSession();
 
 
-            app.UseEndpoints(endpoints =>
-            {
+            app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                     name: "default",
+                    pattern: "{controller=Login}/{action=Login}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "home",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
