@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Skilled_Force.Manager;
 using Skilled_Force.Models;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,20 @@ namespace Skilled_Force.Controllers
     public class LoginController : Controller
     {
         private readonly ILogger<LoginController> _logger;
+        private readonly SkilledForceDB skilledForceDB;
 
-        public LoginController(ILogger<LoginController> logger)
+        public LoginController(ILogger<LoginController> logger, SkilledForceDB skilledForceDB)
         {
             _logger = logger;
+            this.skilledForceDB = skilledForceDB;
         }
 
-        public IActionResult Login()
+        [HttpGet]
+        public IActionResult LoginForm()
         {
             return View();
         }
-
+        [HttpGet]
         public IActionResult Privacy()
         {
             return View();
@@ -33,5 +37,13 @@ namespace Skilled_Force.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpPost]
+        public IActionResult Login(LoginViewModel login)
+        {
+            User exisitngUser = skilledForceDB.User.Where(u => u.UserId == login.username && u.Password == login.password).FirstOrDefault();
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

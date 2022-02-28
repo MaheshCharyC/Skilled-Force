@@ -1,13 +1,12 @@
+
+using Skilled_Force.Manager;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Skilled_Force
 {
@@ -24,11 +23,25 @@ namespace Skilled_Force
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<SkilledForceDB>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("SkilledForceDB")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<SkilledForceDB>();
+                //context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+                SeedData.Initialize(serviceScope.ServiceProvider);
+
+            }
+
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -52,7 +65,7 @@ namespace Skilled_Force
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Login}/{id?}");
+                    pattern: "{controller=Login}/{action=LoginForm}");
                 endpoints.MapControllerRoute(
                     name: "home",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
