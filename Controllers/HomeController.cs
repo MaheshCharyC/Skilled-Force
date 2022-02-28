@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Skilled_Force.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Skilled_Force.Controllers
 {
@@ -32,6 +28,23 @@ namespace Skilled_Force.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet]
+        public IActionResult GetList()
+        {
+            if (TempData.Peek("role").Equals("Seeker"))
+            {
+                // TODO: Re
+            } else if (TempData.Peek("role").Equals("Employer"))
+            {
+
+            }
+            else if (TempData.Peek("role").Equals("Admin"))
+            {
+
+            }
+            return View();
         }
     }
 }

@@ -12,6 +12,10 @@ namespace Skilled_Force.Manager
 
         public DbSet<User> User { get; set; }
 
+        public DbSet<Job> Job { get; set; }
+
+        public DbSet<Role> Role { get; set; }
+
         public SkilledForceDB(DbContextOptions<SkilledForceDB> options)
             : base(options)
         {

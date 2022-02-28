@@ -2,11 +2,8 @@
 using Microsoft.Extensions.Logging;
 using Skilled_Force.Manager;
 using Skilled_Force.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Skilled_Force.Controllers
 {
@@ -26,6 +23,7 @@ namespace Skilled_Force.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public IActionResult Privacy()
         {
@@ -41,8 +39,22 @@ namespace Skilled_Force.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel login)
         {
+
             User exisitngUser = skilledForceDB.User.Where(u => u.UserId == login.username && u.Password == login.password).FirstOrDefault();
-            return RedirectToAction("Index", "Home");
+            if(exisitngUser != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    TempData["UserId"] = exisitngUser.UserId;
+                    TempData["Email"] = exisitngUser.Email;
+                    TempData["FirstName"] = exisitngUser.FirstName;
+                    TempData["Role"] = exisitngUser.Role;
+                    ViewData["success"] = true;
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            ViewData["success"] = false;
+            return LoginForm();            
         }
 
     }

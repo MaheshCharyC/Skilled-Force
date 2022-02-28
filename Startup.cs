@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Skilled_Force
 {
@@ -22,6 +23,10 @@ namespace Skilled_Force
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews().AddSessionStateTempDataProvider();
+            services.AddRazorPages().AddSessionStateTempDataProvider();
+            services.AddSession();
+
             services.AddControllersWithViews();
             services.AddDbContext<SkilledForceDB>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SkilledForceDB")));
@@ -59,7 +64,7 @@ namespace Skilled_Force
 
             app.UseAuthorization();
 
-            //app.UseSession();
+            app.UseSession();
 
 
             app.UseEndpoints(endpoints => {
