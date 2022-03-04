@@ -12,25 +12,31 @@ namespace Skilled_Force.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string UserId { get; set; }
 
-        [Required]
         [Column("FirstName")]
+        [Required(ErrorMessage = "Please enter First Name")]
         [Display(Name = "First Name")]
         [StringLength(50)]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter Last Name")]
         [Column("LastName")]
         [Display(Name = "Last Name")]
         [StringLength(50)]
         public string LastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter Gender")]
+        [Column("Gender")]
+        [Display(Name = "Gender")]
+        [StringLength(50)]
+        public string Gender { get; set; }
+
+        [Required(ErrorMessage = "Please enter Phone")]
         [Column("Phone")]
         [Display(Name = "Phone")]
         [StringLength(50)]
         public string Phone { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter Email")]
         [Column("Email")]
         [Display(Name = "Email")]
         [StringLength(50)]
@@ -39,7 +45,7 @@ namespace Skilled_Force.Models
         [Required]
         public int RoleId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter password")]
         [Column("Password")]
         [Display(Name = "Password")]
         [StringLength(50)]

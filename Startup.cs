@@ -69,11 +69,14 @@ namespace Skilled_Force
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Login}/{action=LoginForm}");
-                endpoints.MapControllerRoute(
                     name: "home",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}");
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Account}/{action=LoginForm}");
+                endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{controller=Account}/{action=RegistrationForm}");
             });
         }
     }

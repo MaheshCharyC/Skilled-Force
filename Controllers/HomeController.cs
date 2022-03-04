@@ -16,7 +16,10 @@ namespace Skilled_Force.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            if (TempData.Peek("UserId") != null)
+                return View();             
+            else
+                return RedirectToAction("LoginForm", "Account");
         }
 
         public IActionResult Privacy()
@@ -35,7 +38,7 @@ namespace Skilled_Force.Controllers
         {
             if (TempData.Peek("role").Equals("Seeker"))
             {
-                // TODO: Re
+                
             } else if (TempData.Peek("role").Equals("Employer"))
             {
 

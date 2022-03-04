@@ -45,6 +45,7 @@ namespace Skilled_Force.Manager
                         Password="test",
                         FirstName="TestF",
                         LastName="TestL",
+                        Gender="Male",
                         RoleId=1,
                         Phone="0000000000"
                     },
@@ -54,6 +55,7 @@ namespace Skilled_Force.Manager
                         UserId = "test1",
                         Password = "test",
                         FirstName = "One",
+                        Gender = "Male",
                         LastName = "Test Last",
                         RoleId = 2,
                         Phone = "0000000000"
