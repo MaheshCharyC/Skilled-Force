@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Skilled_Force.Manager;
 using Skilled_Force.Models;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -40,17 +42,17 @@ namespace Skilled_Force.Controllers
         public IActionResult Login(LoginViewModel login)
         {
             User exisitngUser = getUserIfExists(login.Email, login.Password);
-            if(exisitngUser != null)
+            if (exisitngUser != null)
             {
                 TempData["UserId"] = exisitngUser.UserId;
                 TempData["Email"] = exisitngUser.Email;
                 TempData["FirstName"] = exisitngUser.FirstName;
-                TempData["Role"] = exisitngUser.Role;
+                TempData["RoleId"] = exisitngUser.RoleId;
                 ViewData["success"] = true;
                 return RedirectToAction("Index", "Home");
-             }
+            }
             ViewData["success"] = false;
-            return LoginForm();            
+            return LoginForm();
         }
 
         [HttpGet]
@@ -64,6 +66,18 @@ namespace Skilled_Force.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            List<SelectListItem> roles = new List<SelectListItem>();
+            foreach (Role role in GetRoles  ())
+            {
+                roles.Add(new SelectListItem { Value = role.RoleId, Text = role.Name});
+            }
+            ViewBag.roles = roles;
+            ViewBag.Gender = new List<SelectListItem>() {
+                new SelectListItem { Value = "", Text = ""},
+                new SelectListItem { Value = "Male", Text = "Male"},
+                new SelectListItem { Value = "Female", Text = "Female"},
+                new SelectListItem { Value = "Other", Text = "Other"},
+            };
             return View("RegistrationForm");
         }
 
@@ -87,7 +101,7 @@ namespace Skilled_Force.Controllers
             }
             else
             {
-
+                return Register();
             }
             return LoginForm();
         }
@@ -96,5 +110,8 @@ namespace Skilled_Force.Controllers
         {
             return skilledForceDB.User.Where(u => u.Email == Email && u.Password == Password).FirstOrDefault();
         }
+
+        public List<Role> GetRoles() => skilledForceDB.Role.ToList();
+
     }
 }

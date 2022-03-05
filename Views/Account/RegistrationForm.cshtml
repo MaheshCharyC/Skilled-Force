@@ -1,6 +1,7 @@
 ﻿@model User
 
-@{ ViewData["Title"] = "Skilled Force Login Page"; }
+
+@{ ViewData["Title"] = "Skilled Force Registration Page"; }
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -29,7 +30,7 @@
                 <div class="form-outline mb-4">
                    @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
                    @Html.LabelFor(m => m.Gender)
-                   @Html.TextBoxFor(m => m.Gender, null, new { @class = "form-control form-control-lg" })
+                   @Html.DropDownList("Gender", (IEnumerable<SelectListItem>)ViewBag.Gender, new { id = "Gender", @class = "form-control form-control-lg" })
                 </div>
                 <div class="form-outline mb-4">
                    @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
@@ -39,15 +40,16 @@
                 <div class="form-outline mb-4">
                    @Html.ValidationMessageFor(m => m.Role, "", new { @class = "text-danger" })
                    @Html.LabelFor(m => m.Role)
-                   @Html.TextBoxFor(m => m.Role, null, new { @class = "form-control form-control-lg" })
+                   @Html.DropDownList("RoleId", (IEnumerable<SelectListItem>)ViewBag.roles, new { id = "roles", @class = "form-control form-control-lg" })
                 </div>
                 <div class="form-outline mb-4">
                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                    @Html.LabelFor(m => m.Password)
                    @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg" })
                 </div>
-
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
+                <hr class="my-4">
+                @Html.ActionLink("Sign In", "LoginForm", "Account")
             }
           </div>
         </div>

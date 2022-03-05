@@ -7,7 +7,7 @@ namespace Skilled_Force.Models
 {
     public class User
     {
-        [Required]
+        
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string UserId { get; set; }
@@ -43,7 +43,7 @@ namespace Skilled_Force.Models
         public string Email { get; set; }
 
         [Required]
-        public int RoleId { get; set; }
+        public string RoleId { get; set; }
 
         [Required(ErrorMessage = "Please enter password")]
         [Column("Password")]

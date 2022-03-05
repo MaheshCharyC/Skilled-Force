@@ -25,14 +25,20 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                             </li>
+                            @if (TempData.Peek("RoleId").Equals("2"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Job" asp-action="JobPostForm">Post Job</a>
+                                </li>
+                            }
                             <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">@TempData.Peek("FirstName")</a>
-                            </li>
-                            <li class="nav-item">
-                                @Html.ActionLink("Logout", "Logout", "Account")
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="#">@TempData.Peek("FirstName")</a>
                             </li>
                         </ul>
                     </div>
+                </div>
+                <div class="navbar-right">
+                    @Html.ActionLink("Logout", "Logout", "Account", new { id = "roles", @class = "pull-right" } )
                 </div>
             </nav>
         </header>

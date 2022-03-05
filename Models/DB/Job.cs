@@ -7,7 +7,6 @@ namespace Skilled_Force.Models
 {
     public class Job
     {
-        [Required]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string JobId { get; set; }
@@ -26,22 +25,42 @@ namespace Skilled_Force.Models
         public string Description { get; set; }
 
         [Required]
+        [Column("Location")]
+        [Display(Name = "Location")]
+        [StringLength(50)]
+        public string Location { get; set; }
+
+        [Required]
+        [Column("JobType")]
+        [Display(Name = "JobType")]
+        [StringLength(50)]
+        public string JobType { get; set; }
+
+        [Required]
+        [Column("Salary")]
+        [Display(Name = "Salary")]
+        [StringLength(50)]
+        public string Salary { get; set; }
+
+        [Required]
+        [Column("EmploymentType")]
+        [Display(Name = "EmploymentType [Part Time / Full Time]")]
+        [StringLength(50)]
+        public string EmploymentType { get; set; }
+
         [Column("CreatedBy")]
         [Display(Name = "Created By")]
         public int CreatedBy { get; set; }
 
-        [Required]
         [Column("UpdatedBy")]
         [Display(Name = "Updated By")]
         public int UpdatedBy { get; set; }
 
-        [Required]
         [Column("CreatedAt")]
         [DisplayFormat(DataFormatString = "{0:d} at {0:t}", ApplyFormatInEditMode = true)]
         [Display(Name = "Created At")]
         public DateTime CreatedAt { get; set; }
 
-        [Required]
         [Column("UpdatedAt")]
         [DisplayFormat(DataFormatString = "{0:d} at {0:t}", ApplyFormatInEditMode = true)]
         [Display(Name = "Updated At")]

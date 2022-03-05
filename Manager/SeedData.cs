@@ -21,17 +21,20 @@ namespace Skilled_Force.Manager
 
                 context.Role.AddRange(
                     new Role()
-                    {
+                    {   
+                        RoleId = "1",
                         Name = "Seeker",
                         Description = "General user/job seeker"
                     }, 
                     new Role()
                     {
+                        RoleId = "2",
                         Name = "Recruiter",
                         Description = "General user/job provider"
                     },
                     new Role()
                     {
+                        RoleId = "3",
                         Name = "Admin",
                         Description = "Admin user"
                     }
@@ -40,44 +43,61 @@ namespace Skilled_Force.Manager
                 context.User.AddRange(
                     new User
                     {
-                        Email ="test@gmail.com",
-                        UserId="test",
+                        Email ="seeker@gmail.com",
                         Password="test",
-                        FirstName="TestF",
-                        LastName="TestL",
+                        FirstName="JobSeekeer F",
+                        LastName= "L",
                         Gender="Male",
-                        RoleId=1,
-                        Phone="0000000000"
+                        RoleId = "1",
+                        Phone ="0000000000"
                     },
                     new User
                     {
-                        Email = "test1@gmail.com",
-                        UserId = "test1",
+                        Email = "recruiter@gmail.com",
                         Password = "test",
-                        FirstName = "One",
+                        FirstName = "Recruiter F",
+                        LastName = "Recruiter L",
+                        Gender = "Female",
+                        RoleId = "2",
+                        Phone = "0000000000"
+                    },
+                    new User
+                    {
+                        Email = "admin@gmail.com",
+                        Password = "test",
+                        FirstName = "Admin F",
+                        LastName = "Admin L",
                         Gender = "Male",
-                        LastName = "Test Last",
-                        RoleId = 2,
+                        RoleId = "3",
                         Phone = "0000000000"
                     }
+
                 );
                 context.Job.AddRange(
                     new Job
                     {
                         Title = "Test Job 1",
                         Description = "Test data 2",
+                        JobType="",
+                        EmploymentType="",
+                        Salary="",
+                        Location="",
                         CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now,
-                        CreatedBy = 1,
-                        UpdatedBy = 1
+                        CreatedBy = 2,
+                        UpdatedBy = 2
                     }, new Job
                     {
                         Title = "Test Job 2",
                         Description = "Test data 2",
+                        JobType = "",
+                        EmploymentType = "",
+                        Salary = "",
+                        Location = "",
                         CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now,
-                        CreatedBy = 1,
-                        UpdatedBy = 1
+                        CreatedBy = 2,
+                        UpdatedBy = 2
                     }
                 );
                 context.SaveChanges();
