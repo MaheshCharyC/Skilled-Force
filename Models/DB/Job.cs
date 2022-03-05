@@ -50,11 +50,11 @@ namespace Skilled_Force.Models
 
         [Column("CreatedBy")]
         [Display(Name = "Created By")]
-        public int CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
 
         [Column("UpdatedBy")]
         [Display(Name = "Updated By")]
-        public int UpdatedBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         [Column("CreatedAt")]
         [DisplayFormat(DataFormatString = "{0:d} at {0:t}", ApplyFormatInEditMode = true)]

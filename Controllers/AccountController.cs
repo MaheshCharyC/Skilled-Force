@@ -44,7 +44,7 @@ namespace Skilled_Force.Controllers
             User exisitngUser = getUserIfExists(login.Email, login.Password);
             if (exisitngUser != null)
             {
-                TempData["UserId"] = exisitngUser.UserId;
+                TempData["UserId"] = exisitngUser.UserId.ToString();
                 TempData["Email"] = exisitngUser.Email;
                 TempData["FirstName"] = exisitngUser.FirstName;
                 TempData["RoleId"] = exisitngUser.RoleId;

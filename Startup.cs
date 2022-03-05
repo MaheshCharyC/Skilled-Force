@@ -26,10 +26,10 @@ namespace Skilled_Force
             services.AddControllersWithViews().AddSessionStateTempDataProvider();
             services.AddRazorPages().AddSessionStateTempDataProvider();
             services.AddSession();
-
             services.AddControllersWithViews();
             services.AddDbContext<SkilledForceDB>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SkilledForceDB")));
+            services.AddMvc().AddControllersAsServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

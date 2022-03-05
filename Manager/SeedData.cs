@@ -84,8 +84,8 @@ namespace Skilled_Force.Manager
                         Location="",
                         CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now,
-                        CreatedBy = 2,
-                        UpdatedBy = 2
+                        CreatedBy = "2",
+                        UpdatedBy = "2"
                     }, new Job
                     {
                         Title = "Test Job 2",
@@ -96,8 +96,8 @@ namespace Skilled_Force.Manager
                         Location = "",
                         CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now,
-                        CreatedBy = 2,
-                        UpdatedBy = 2
+                        CreatedBy = "2",
+                        UpdatedBy = "2"
                     }
                 );
                 context.SaveChanges();

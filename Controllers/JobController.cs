@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Skilled_Force.Manager;
 using Skilled_Force.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Skilled_Force.Controllers
 {
@@ -48,6 +50,10 @@ namespace Skilled_Force.Controllers
         {
             if (ModelState.IsValid)
             {
+                job.CreatedBy = TempData.Peek("UserId").ToString();
+                job.UpdatedBy = TempData.Peek("UserId").ToString();
+                job.CreatedAt = DateTime.Now;
+                job.UpdatedAt = DateTime.Now;
                 skilledForceDB.Job.Add(job);
                 skilledForceDB.SaveChanges();
             }
@@ -56,6 +62,23 @@ namespace Skilled_Force.Controllers
                 return JobPostForm();
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public List<Job> GetList(string roleId)
+        {
+            if (roleId != null)
+            {
+                if (roleId.Equals("2"))
+                {
+                    return skilledForceDB.Job.Where(j => j.CreatedBy == (string)TempData.Peek("UserId")).ToList();
+                }
+                else
+                {
+                    return skilledForceDB.Job.ToList();
+                }
+            }
+            return null;
         }
     }
 }
