@@ -87,7 +87,7 @@ namespace Skilled_Force.Controllers
             if (ModelState.IsValid)
             {
                 User exisitngUser = getUserIfExists(user.Email, user.Password);
-                if (exisitngUser != null)
+                if (exisitngUser == null)
                 {
                     skilledForceDB.User.Add(user);
                     skilledForceDB.SaveChanges();
