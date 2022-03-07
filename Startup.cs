@@ -39,7 +39,7 @@ namespace Skilled_Force
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<SkilledForceDB>();
-                //context.Database.EnsureDeleted();
+                context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
                 SeedData.Initialize(serviceScope.ServiceProvider);
 
